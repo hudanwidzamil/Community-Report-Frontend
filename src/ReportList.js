@@ -8,7 +8,7 @@ const ReportList = () =>{
 
     const handleClick = e =>{
         e.preventDefault();
-        Axios.get(`http://localhost:9000/report/`,
+        Axios.get(`http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/report/`,
         {withCredentials:true},
         {headers: {
           Accept: "application/json",

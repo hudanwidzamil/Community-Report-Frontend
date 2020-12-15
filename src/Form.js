@@ -14,7 +14,7 @@ const Form = () =>{
     }
     const handleClick = e =>{
         e.preventDefault();
-        Axios.post("http://localhost:9000/report",
+        Axios.post("http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/report",
         {
             laporan: report,
             lokasi: location,

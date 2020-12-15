@@ -35,7 +35,7 @@ const App= ()=> {
   
 
   useEffect(() => {
-    Axios.get("http://localhost:9000/login/success",
+    Axios.get("http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/login/success",
     {withCredentials:true},
     {headers: {
       Accept: "application/json",
@@ -48,12 +48,25 @@ const App= ()=> {
 
   const handleLoginClick = (e) => {
     e.preventDefault();
-    window.location.href="http://localhost:9000/login";
+    window.location.href="http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/login";
   }
   const handleLogoutClick = (e) =>{
     e.preventDefault();
-    window.location.href="http://localhost:9000/logout";
+    window.location.href="http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/logout";
   }
+  const handleLoginHelperClick = (e) =>{
+    e.preventDefault();
+    Axios.get("http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/login/success",
+    {withCredentials:true},
+    {headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true
+    }})
+    .then(response=>response.data)
+    .then(res=>{setUser(res.user);setLoggedIn(res.success);})
+  }
+
   const renderAuthButton = ()=>{
     if(isLoggedIn){
       return <Button color="inherit" onClick={handleLogoutClick}>Logout</Button>
@@ -85,6 +98,8 @@ const App= ()=> {
           <Paper className={classes.paper}><Report/></Paper>
         </Grid>
       </Grid>
+      <Typography component="h6"className={classes.hello}>Muhamad Hudan Widzamil ©2020</Typography>
+      <Button color="inherit" onClick={handleLoginHelperClick}>Login Helper</Button>
     </div>
   );
 }

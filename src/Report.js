@@ -12,7 +12,7 @@ const Report = () =>{
     }
     const handleClick = e =>{
         e.preventDefault();
-        Axios.get(`http://localhost:9000/report/${id}`,
+        Axios.get(`http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/report/${id}`,
         {withCredentials:true},
         {headers: {
           Accept: "application/json",
@@ -28,7 +28,13 @@ const Report = () =>{
     }
     const handleEditClick = e =>{
         e.preventDefault();
-        Axios.patch(`http://localhost:9000/report/${id}`,{status: status})
+        Axios.patch(`http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/report/${id}`,{status: status},
+        {withCredentials:true},
+        {headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true
+        }})
         .then(res=>res.data)
         .then(message=>console.log(message));
         alert("Berhasil diubah");
@@ -36,7 +42,13 @@ const Report = () =>{
 
     const handleDelClick = e =>{
         e.preventDefault();
-        Axios.delete(`http://localhost:9000/report/${id}`)
+        Axios.delete(`http://ec2-54-196-120-81.compute-1.amazonaws.com:9000/report/${id}`,
+        {withCredentials:true},
+        {headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true
+        }})
         .then(res=>res.data)
         .then(message=>console.log(message));
         alert("Berhasil dihapus");
